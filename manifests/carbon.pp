@@ -14,6 +14,7 @@ class graphite::carbon {
 
   include graphite::carbon::package
   include graphite::carbon::config
+  include graphite::carbon::firewall
   include graphite::carbon::service
 }
 

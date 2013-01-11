@@ -11,7 +11,8 @@
 # Sample Usage:
 #
 # [Remember: No empty lines between comments and class definition]
-class graphite::web::config ($time_zone = 'UTC'){
+class graphite::web::config ($time_zone = 'America/Chicago'){
+  Class['graphite::web::package'] ~> Class['graphite::web::config']
 
   file {'local_settings.py':
     ensure    => file,
@@ -19,7 +20,10 @@ class graphite::web::config ($time_zone = 'UTC'){
     owner     => 'root',
     group     => 'root',
     mode      => '0644',
-    notify    => Service['httpd'],
+    notify    => $manage_httpd ? {
+                  true    => Service['httpd'],
+                  default => undef,
+                  },
     content   => template('graphite/local_settings.py.erb');
   }
 }
