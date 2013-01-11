@@ -24,6 +24,4 @@ class graphite::carbon::config {
     order   => 0,
     source  => 'puppet:///modules/graphite/storage-schemas.conf'
   }
-
-
 }

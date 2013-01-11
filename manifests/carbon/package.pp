@@ -13,6 +13,7 @@
 # [Remember: No empty lines between comments and class definition]
 class graphite::carbon::package {
   package {'carbon':
-    ensure => present;
+    ensure  => present,
+    require => Yumrepo['bke'],
   }
 }

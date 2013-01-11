@@ -11,9 +11,7 @@
 # * Update documentation
 #
 class graphite::whisper {
-
   include graphite::whisper::package
   include graphite::whisper::config
-
 }
 

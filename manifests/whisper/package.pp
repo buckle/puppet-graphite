@@ -1,5 +1,6 @@
 class graphite::whisper::package {
   package {'whisper':
-    ensure => present;
+    ensure  => present,
+    require => Yumrepo['bke'],
   }
 }
