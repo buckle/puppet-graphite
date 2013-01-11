@@ -20,7 +20,7 @@ class graphite::web::config ($time_zone = 'America/Chicago'){
     owner     => 'root',
     group     => 'root',
     mode      => '0644',
-    notify    => $manage_httpd ? {
+    notify    => $graphite::web::manage_httpd ? {
                   true    => Service['httpd'],
                   default => undef,
                   },

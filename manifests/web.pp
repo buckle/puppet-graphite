@@ -19,7 +19,7 @@ class graphite::web (
   ) {
   include graphite::web::package
   include graphite::web::config
-  if $manage_httpd {
+  if $graphite::web::manage_httpd {
     include graphite::web::service
   }
 }
