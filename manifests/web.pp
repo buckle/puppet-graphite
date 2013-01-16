@@ -19,6 +19,7 @@ class graphite::web (
   ) {
   include graphite::web::package
   include graphite::web::config
+  include graphite::web::cron
   if $graphite::web::manage_httpd {
     include graphite::web::service
   }
