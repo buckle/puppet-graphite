@@ -11,7 +11,7 @@ class graphite::carbon::monitor {
   concat::fragment {"${::fqdn} check_procs carbon":
     target   => "/etc/nrpe.d/10-${::hostname}-checks.cfg",
     content  => inline_template(
-      'command[check_procs_carbon]=<%= scope.lookupvar(\'nagios::target::params::nagios_plugin_dir\') %>/check_procs -u carbon -C carbon-cache.py -c 1:2\n'
+      "command[check_procs_carbon]=<%= scope.lookupvar('nagios::target::params::nagios_plugin_dir') %>/check_procs -u carbon -C carbon-cache.py -c 1:2\n"
     ),
   }
 }
