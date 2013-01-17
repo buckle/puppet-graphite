@@ -10,11 +10,14 @@
 #
 # * Update documentation
 #
-class graphite::carbon {
+class graphite::carbon($monitor = hiera('monitor')) {
 
   include graphite::carbon::package
   include graphite::carbon::config
   include graphite::carbon::firewall
   include graphite::carbon::service
+  if $monitor == true {
+    include graphite::carbon::monitor
+  }
 }
 
