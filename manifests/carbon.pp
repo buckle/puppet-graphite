@@ -10,7 +10,7 @@
 #
 # * Update documentation
 #
-class graphite::carbon($monitor = hiera('monitor')) {
+class graphite::carbon($monitor = hiera('monitor', true)) {
 
   include graphite::carbon::package
   include graphite::carbon::config

@@ -6,7 +6,7 @@ class graphite::carbon::monitor {
     use                 => 'generic-service',
     host_name           => $::fqdn,
     notification_period => '24x7',
-    service_description => "${::hostname} Carbon Process",
+    service_description => "${::hostname} Carbon Process Running",
   }
   concat::fragment {"${::fqdn} check_procs carbon":
     target   => "/etc/nrpe.d/10-${::hostname}-checks.cfg",
