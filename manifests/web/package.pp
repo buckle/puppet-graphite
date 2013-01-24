@@ -19,4 +19,10 @@ class graphite::web::package {
     ensure  => present,
     require => Yumrepo['bke'],
   }
+
+  file { '/usr/bin/build-index.sh':
+    ensure  => present,
+    mode    => '0755',
+    source  => "puppet:///modules/${module_name}/build-index.sh",
+  }
 }
