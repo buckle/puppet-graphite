@@ -11,8 +11,19 @@
 # Sample Usage:
 #
 # [Remember: No empty lines between comments and class definition]
-class graphite::web::config ($time_zone = 'America/Chicago'){
+class graphite::web::config (
+  $time_zone        = 'America/Chicago',
+  $ldap_uri         = undef,
+  $ldap_base_user   = undef,
+  $ldap_search_base = undef,
+  $ldap_base_pass   = undef,
+  $ldap_user_query  = undef,
+){
   Class['graphite::web::package'] ~> Class['graphite::web::config']
+
+  if $ldap_uri != undef {
+    realize(Package['python-ldap'])
+  }
 
   file {'local_settings.py':
     ensure    => file,

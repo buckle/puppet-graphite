@@ -75,8 +75,8 @@ TIME_ZONE = '<%= @time_zone %>'
 # This is used for emailing rendered Graphs
 # Default backend is SMTP
 #EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-#EMAIL_HOST = 'localhost'
-#EMAIL_PORT = 25
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = 25
 #EMAIL_HOST_USER = ''
 #EMAIL_HOST_PASSWORD = ''
 #EMAIL_USE_TLS = False
@@ -93,10 +93,26 @@ TIME_ZONE = '<%= @time_zone %>'
 #LDAP_PORT = 389
 #	OR
 #LDAP_URI = "ldaps://ldap.mycompany.com:636"
-#LDAP_SEARCH_BASE = "OU=users,DC=mycompany,DC=com"
+<% if @ldap_uri -%>
+USE_LDAP_AUTH = True
+LDAP_URI = "<%= ldap_uri %>"
+<% end -%>
 #LDAP_BASE_USER = "CN=some_readonly_account,DC=mycompany,DC=com"
+<% if @ldap_base_user -%>
+LDAP_BASE_USER = "<%= ldap_base_user %>"
+<% end -%>
+#LDAP_SEARCH_BASE = "OU=users,DC=mycompany,DC=com"
+<% if @ldap_search_base -%>
+LDAP_SEARCH_BASE = "<%= ldap_search_base %>"
+<% end -%>
 #LDAP_BASE_PASS = "readonly_account_password"
+<% if @ldap_base_pass -%>
+LDAP_BASE_PASS = "<%= ldap_base_pass %>"
+<% end -%>
 #LDAP_USER_QUERY = "(username=%s)"  #For Active Directory use "(sAMAccountName=%s)"
+<% if @ldap_user_query -%>
+LDAP_USER_QUERY = "<%= ldap_user_query %>"
+<% end -%>
 #
 # If you want to further customize the ldap connection options you should
 # directly use ldap.set_option to set the ldap module's global options.
