@@ -17,7 +17,9 @@ class graphite::carbon::firewall(
       use                 => 'generic-service',
       host_name           => $::fqdn,
       notification_period => '24x7',
-      service_description => "${::hostname} carbon port ${carbon_port} Listening",
+      service_description => 'carbon port ${carbon_port} Listening',
+      icon_image          => 'carbon.png',
+      icon_image_alt      => 'Carbon Process Running',
     }
   }
   if $pickle_enabled == true {
@@ -32,7 +34,7 @@ class graphite::carbon::firewall(
       use                 => 'generic-service',
       host_name           => $::fqdn,
       notification_period => '24x7',
-      service_description => "${::hostname} pickle port ${pickle_port} Listening",
+      service_description => 'pickle port ${pickle_port} Listening',
     }
   }
 }
