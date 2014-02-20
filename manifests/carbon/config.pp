@@ -14,15 +14,24 @@
 class graphite::carbon::config {
   Class['graphite::carbon::package'] ~> Class['graphite::carbon::config']
   include concat::setup
+
   concat { '/etc/carbon/storage-schemas.conf':
-    group   => '0',
-    mode    => '0644',
-    owner   => '0',
-    notify  => Service['carbon-cache'];
+    group  => '0',
+    mode   => '0644',
+    owner  => '0',
+    notify => Service['carbon-cache'];
   }
+
   concat::fragment { 'header':
-    target  => '/etc/carbon/storage-schemas.conf',
-    order   => 0,
-    source  => 'puppet:///modules/graphite/storage-schemas.conf'
+    target => '/etc/carbon/storage-schemas.conf',
+    order  => 0,
+    source => 'puppet:///modules/graphite/storage-schemas.conf'
+  }
+
+  file { '/etc/cron.daily/graphite-logrotate':
+    mode   => '0755',
+    owner  => 'root',
+    group  => 'root',
+    source => "puppet:///modules/${module_name}/graphite-logrotate.sh",
   }
 }
