@@ -1,4 +1,4 @@
-!/bin/bash
+#!/bin/bash
 
 CARBON_LOGS="/var/log/carbon-* /var/log/graphite-web"
 
