@@ -23,13 +23,11 @@ class graphite::web ($manage_httpd = false) {
     include graphite::web::service
   }
 
-  logrotate::rule { 'graphite-web':
-    path          => '/var/log/graphite-web/*.log',
-    missingok     => true,
-    ifempty       => false,
-    sharedscripts => true,
-    delaycompress => true,
-    postrotate    => '/sbin/service httpd reload > /dev/null 2>/dev/null || true',
+  file { '/etc/logrotate.d/graphite-web':
+    mode   => '0644',
+    owner  => 'root',
+    group  => 'root',
+    source => "puppet:///modules/${module_name}/graphite-web-logrotate.conf",
   }
 }
 
